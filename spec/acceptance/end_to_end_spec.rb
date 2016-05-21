@@ -25,7 +25,7 @@ RSpec.describe "starting a rails app" do
   }
 
   context "when MySQL is the right version" do
-    let(:db_port) { "3307" }
+    let(:db_port) { "3306" }
 
     it "starts the app" do
       expect(process_status).to be_success
@@ -37,7 +37,7 @@ RSpec.describe "starting a rails app" do
   end
 
   context "when MySQL is the wrong version" do
-    let(:db_port) { "3306" }
+    let(:db_port) { "3307" }
 
     it "doesn't start the app" do
       expect(process_status).not_to be_success
