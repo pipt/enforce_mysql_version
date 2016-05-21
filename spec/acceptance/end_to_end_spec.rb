@@ -12,10 +12,10 @@ RSpec.describe "starting a rails app" do
   before do
     ENV["DB_PORT"] = db_port
     ENV["RAILS_ENV"] = "test"
-    `./bin/bundle exec rake db:create`
+    `./bin/rake db:create`
   end
 
-  let(:output) { `./bin/bundle exec rails runner 'exit'` }
+  let(:output) { `./bin/rails runner 'exit'` }
   let(:process_status) {
     output
     $?
