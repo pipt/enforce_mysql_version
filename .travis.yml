@@ -1,5 +1,19 @@
-sudo: false
+sudo: required
+dist: trusty
 language: ruby
 rvm:
   - 2.3.0
-before_install: gem install bundler -v 1.12.4
+services:
+  - docker
+
+before_script:
+  - docker-compose up -d
+  - while ! nc -w 1 127.0.0.1 3306 2>/dev/null; do sleep 1; done
+  - while ! nc -w 1 127.0.0.1 3307 2>/dev/null; do sleep 1; done
+
+script:
+  - bundle install
+  - cd spec/rails_app
+  - bundle install
+  - cd ../../
+  - bundle exec rspec
