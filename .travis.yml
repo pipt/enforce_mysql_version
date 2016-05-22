@@ -13,7 +13,5 @@ before_script:
 
 script:
   - bundle install
-  - cd spec/rails_app
-  - bundle install
-  - cd ../../
+  - bundle install --gemfile spec/rails_app/Gemfile
   - bundle exec rspec
