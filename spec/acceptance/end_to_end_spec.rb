@@ -24,14 +24,13 @@ RSpec.describe "starting a rails app" do
   before :all do
     in_rails_app do
       PORTS.values.each do |port|
-        `DB_PORT=#{port} RAILS_ENV=test ./bin/rake db:create`
+        `DB_PORT=#{port} ./bin/rake db:create`
       end
     end
   end
 
   before do
     ENV["DB_PORT"] = db_port
-    ENV["RAILS_ENV"] = "test"
     ENV["REQUIRE_VERSION"] = gem_require
   end
 

@@ -9,7 +9,8 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
-default: &default
+development:
+  database: rails_app_development
   adapter: mysql2
   encoding: utf8
   pool: 5
@@ -17,7 +18,3 @@ default: &default
   password:
   host: 127.0.0.1
   port: <%= ENV["DB_PORT"] %>
-
-test:
-  <<: *default
-  database: rails_app_test
