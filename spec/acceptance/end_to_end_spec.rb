@@ -35,7 +35,8 @@ RSpec.describe "starting a rails app" do
     ENV["RAILS_ENV"] = "test"
   end
 
-  let(:output) { `./bin/rails runner 'exit'` }
+  let(:output) { `./bin/rails runner 'puts "#{success_message}"'` }
+  let(:success_message) { "I successfully ran" }
   let(:process_status) {
     output
     $?
@@ -57,6 +58,10 @@ RSpec.describe "starting a rails app" do
       it "doesn't print an error message" do
         expect(output).not_to include(error_message)
       end
+
+      it "prints the success message" do
+        expect(output).to include(success_message)
+      end
     end
   end
 
@@ -70,6 +75,10 @@ RSpec.describe "starting a rails app" do
 
       it "prints an error message" do
         expect(output).to include(error_message)
+      end
+
+      it "doesn't print the success message" do
+        expect(output).not_to include(success_message)
       end
     end
   end
