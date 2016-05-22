@@ -7,10 +7,24 @@ RSpec.describe "starting a rails app" do
     "5.7" => "33057",
   }
 
-  around do |example|
+  def in_rails_app
     Bundler.with_clean_env do
       Dir.chdir("spec/rails_app") do
-        example.run
+        yield
+      end
+    end
+  end
+
+  around do |example|
+    in_rails_app do
+      example.run
+    end
+  end
+
+  before :all do
+    in_rails_app do
+      PORTS.values.each do |port|
+        `DB_PORT=#{port} RAILS_ENV=test ./bin/rake db:create`
       end
     end
   end
@@ -19,7 +33,6 @@ RSpec.describe "starting a rails app" do
     ENV["DB_PORT"] = db_port
     ENV["RAILS_ENV"] = "test"
     ENV["REQUIRE_VERSION"] = gem_require
-    `./bin/rake db:create`
   end
 
   let(:output) { `./bin/rails runner 'exit'` }

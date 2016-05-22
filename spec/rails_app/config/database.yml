@@ -20,4 +20,4 @@ default: &default
 
 test:
   <<: *default
-  database: rails_app_development
+  database: rails_app_test
