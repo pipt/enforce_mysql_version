@@ -97,7 +97,7 @@ RSpec.describe "starting a rails app" do
     it_behaves_like "the right version of MySQL", "5.7"
   end
 
-  describe "not requiring a specific version" do
+  describe "not requiring a specific version of MySQL" do
     let(:gem_require) { "NOTHING" }
 
     it_behaves_like "the right version of MySQL", "5.5"
