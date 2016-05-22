@@ -24,7 +24,7 @@ RSpec.describe "starting a rails app" do
   before :all do
     in_rails_app do
       PORTS.values.each do |port|
-        `DB_PORT=#{port} RAILS_ENV=test ./bin/rake db:create`
+        `DB_PORT=#{port} RAILS_ENV=test bundle exec rake db:create`
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe "starting a rails app" do
     ENV["RAILS_ENV"] = "test"
   end
 
-  let(:output) { `./bin/rails runner 'puts "#{success_message}"'` }
+  let(:output) { `bundle exec rails runner 'puts "#{success_message}"'` }
   let(:success_message) { "I successfully ran" }
   let(:process_status) {
     output
