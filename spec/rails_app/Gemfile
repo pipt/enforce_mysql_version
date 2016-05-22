@@ -5,7 +5,7 @@ gem 'rails', '4.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 
-if ENV["REQUIRE_VERSION"]
+if ENV["REQUIRE_VERSION"] != "NOTHING"
   gem "enforce_mysql_version", path: "../../", require: ENV["REQUIRE_VERSION"]
 else
   gem "enforce_mysql_version", path: "../../"
