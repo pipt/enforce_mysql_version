@@ -3,39 +3,38 @@
 [![Build
 Status](https://travis-ci.org/pipt/enforce_mysql_version.png?branch=master)](https://travis-ci.org/pipt/enforce_mysql_version)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/enforce_mysql_version`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem will allow you to prevent your rails app from starting unless
+the version of MySQL it's running against is a specific major/minor
+version.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'enforce_mysql_version'
+gem "enforce_mysql_version", require: "5.6"
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install enforce_mysql_version
-
 ## Usage
 
-TODO: Write usage instructions here
+Adding the gem to your `Gemfile` as shown in the installation
+instructions is all you need to do. MySQL versions that can be required
+are `5.5`, `5.6` and `5.7`. If you don't provide a required version in
+your `Gemfile`, this gem will have no effect.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bundle` to install ruby dependecies. Run `docker-compose up` to install and start versions `5.5`, `5.6` and `5.7` of MySQL. Then, run `bundle exec rspec` to run the tests.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/enforce_mysql_version.
+Bug reports and pull requests are welcome on GitHub at https://github.com/pipt/enforce_mysql_version.
 
 
 ## License
