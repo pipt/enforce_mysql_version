@@ -8,8 +8,9 @@ services:
 
 before_script:
   - docker-compose up -d
-  - while ! nc -w 1 127.0.0.1 3306 2>/dev/null; do sleep 1; done
-  - while ! nc -w 1 127.0.0.1 3307 2>/dev/null; do sleep 1; done
+  - while ! nc -w 1 127.0.0.1 33055 2>/dev/null; do sleep 1; done
+  - while ! nc -w 1 127.0.0.1 33056 2>/dev/null; do sleep 1; done
+  - while ! nc -w 1 127.0.0.1 33057 2>/dev/null; do sleep 1; done
 
 script:
   - bundle install
