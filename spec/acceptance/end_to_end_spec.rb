@@ -12,6 +12,7 @@ RSpec.describe "starting a rails app" do
   before do
     ENV["DB_PORT"] = db_port
     ENV["RAILS_ENV"] = "test"
+    ENV["REQUIRE_VERSION"] = required_mysql_version
     `./bin/rake db:create`
   end
 
@@ -21,30 +22,58 @@ RSpec.describe "starting a rails app" do
     $?
   }
   let(:error_message) {
-    "This app won't start unless the MySQL major/minor version is #{EnforceMysqlVersion::VERSION}"
+    "This app won't start unless the MySQL major/minor version is #{required_mysql_version}"
   }
 
-  context "when MySQL is the right version" do
-    let(:db_port) { "3306" }
+  shared_examples "the right version of MySQL" do |version, port|
+    context "when MySQL is version #{version}" do
+      let(:db_port) { port }
 
-    it "starts the app" do
-      expect(process_status).to be_success
-    end
+      it "starts the app" do
+        expect(process_status).to be_success
+      end
 
-    it "doesn't print an error message" do
-      expect(output).not_to include(error_message)
+      it "doesn't print an error message" do
+        expect(output).not_to include(error_message)
+      end
     end
   end
 
-  context "when MySQL is the wrong version" do
-    let(:db_port) { "3307" }
+  shared_examples "the wrong version of MySQL" do |version, port|
+    context "when MySQL is version #{version}" do
+      let(:db_port) { port }
 
-    it "doesn't start the app" do
-      expect(process_status).not_to be_success
-    end
+      it "doesn't start the app" do
+        expect(process_status).not_to be_success
+      end
 
-    it "prints an error message" do
-      expect(output).to include(error_message)
+      it "prints an error message" do
+        expect(output).to include(error_message)
+      end
     end
+  end
+
+  describe "requiring MySQL 5.5" do
+    let(:required_mysql_version) { "5.5" }
+
+    it_behaves_like "the right version of MySQL", "5.5", "33055"
+    it_behaves_like "the wrong version of MySQL", "5.6", "33056"
+    it_behaves_like "the wrong version of MySQL", "5.7", "33057"
+  end
+
+  describe "requiring MySQL 5.6" do
+    let(:required_mysql_version) { "5.6" }
+
+    it_behaves_like "the wrong version of MySQL", "5.5", "33055"
+    it_behaves_like "the right version of MySQL", "5.6", "33056"
+    it_behaves_like "the wrong version of MySQL", "5.7", "33057"
+  end
+
+  describe "requiring MySQL 5.7" do
+    let(:required_mysql_version) { "5.7" }
+
+    it_behaves_like "the wrong version of MySQL", "5.5", "33055"
+    it_behaves_like "the wrong version of MySQL", "5.6", "33056"
+    it_behaves_like "the right version of MySQL", "5.7", "33057"
   end
 end
