@@ -26,6 +26,11 @@ instructions is all you need to do. MySQL versions that can be required
 are `5.5`, `5.6` and `5.7`. If you don't provide a required version in
 your `Gemfile`, this gem will have no effect.
 
+## Compatibility
+
+The gem is tested against Ruby versions `2.0`, `2.1`, `2.2` and `2.3` as well as
+Rails versions `4.0`, `4.1` and `4.2`.
+
 ## Development
 
 After checking out the repo, run `bundle` to install ruby dependecies. Run `docker-compose up` to install and start versions `5.5`, `5.6` and `5.7` of MySQL. Then, run `bundle exec rspec` to run the tests.
