@@ -1,4 +1,4 @@
-# EnforceMysqlVersion
+# Enforce MySQL Version
 
 [![Build
 Status](https://travis-ci.org/pipt/enforce_mysql_version.png?branch=master)](https://travis-ci.org/pipt/enforce_mysql_version)
