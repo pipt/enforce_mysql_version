@@ -42,7 +42,7 @@ RSpec.describe "starting a rails app" do
     $?
   }
   let(:error_message) {
-    "This app won't start unless the MySQL major/minor version is #{required_mysql_version}"
+    "App startup was prevented by the gem enforce_mysql_version. This app won't start unless the MySQL major/minor version is #{required_mysql_version}"
   }
   let(:gem_require) { required_mysql_version }
   let(:required_mysql_version) { "" }
