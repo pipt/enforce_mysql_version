@@ -9,9 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pip Taylor"]
   spec.email         = ["git@evilgeek.co.uk"]
 
-  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
-  spec.homepage      = "http://example.com"
+  spec.summary       = %q{Only start Rails if MySQL is a specific version}
+  spec.homepage      = "https://github.com/pipt/enforce_mysql_version"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
