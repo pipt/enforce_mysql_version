@@ -68,6 +68,12 @@ RSpec.describe "starting a rails app" do
   shared_examples "the wrong version of MySQL" do |running_version|
     context "when MySQL is version #{running_version}" do
       let(:db_port) { PORTS[running_version] }
+      let(:mysql_version_message) {
+        "Your MySQL version is #{running_version}"
+      }
+      let(:workaround_message) {
+        "To get the app running without changing your MySQL version, comment out the enforce_mysql_version gem in your Gemfile"
+      }
 
       it "doesn't start the app" do
         expect(process_status).not_to be_success
@@ -75,6 +81,14 @@ RSpec.describe "starting a rails app" do
 
       it "prints an error message" do
         expect(output).to include(error_message)
+      end
+
+      it "prints the running version of MySQL" do
+        expect(output).to include(mysql_version_message)
+      end
+
+      it "prints workaround instructions" do
+        expect(output).to include(workaround_message)
       end
 
       it "doesn't print the success message" do
