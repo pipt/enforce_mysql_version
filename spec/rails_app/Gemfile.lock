@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    enforce_mysql_version (1.1)
+    enforce_mysql_version (1.2)
 
 GEM
   remote: https://rubygems.org/
