@@ -7,24 +7,10 @@ RSpec.describe "starting a rails app" do
     "5.7" => "33057",
   }
 
-  def in_rails_app
+  around do |example|
     Bundler.with_clean_env do
       Dir.chdir("spec/rails_app") do
-        yield
-      end
-    end
-  end
-
-  around do |example|
-    in_rails_app do
-      example.run
-    end
-  end
-
-  before :all do
-    in_rails_app do
-      PORTS.values.each do |port|
-        `DB_PORT=#{port} RAILS_ENV=test ./bin/rake db:create`
+        example.run
       end
     end
   end
