@@ -1,3 +1,3 @@
 module EnforceMysqlVersion
-  VERSION = "1.2"
+  VERSION = "2.0"
 end
